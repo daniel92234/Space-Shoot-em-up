@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="Script" uid="uid://c1fg6rix1fjdg" path="res://playscene.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dwq4oobiii8rb" path="res://Entities/Player/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://jodtjye2ylbj" path="res://entity_despawn.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://d167jcihjcoak" path="res://Entities/Enemies/asteriod_large/enemy_asteroid_large.tscn" id="4_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bhvwcbni4hksb" path="res://Entities/Enemies/asteroid_large_oval/enemy_asteroid_large_oval.tscn" id="5_272bh"]
+[ext_resource type="PackedScene" uid="uid://cyksxc7etndaa" path="res://Entities/Enemies/alien_ship_small_1/alien_ship_small_1.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://bgdaswkyh8hcr" path="res://score_label.gd" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b1w23t42afpgv" path="res://Entities/Enemies/asteroid_small/enemy_asteroid_small.tscn" id="6_kek77"]
+[ext_resource type="PackedScene" uid="uid://1eosps7555ta" path="res://Entities/Enemies/asteroid_medium/enemy_asteroid_medium.tscn" id="7_4c57u"]
+
+[sub_resource type="Gradient" id="Gradient_ig7tw"]
+offsets = PackedFloat32Array(0, 0.3188406, 0.64492756, 1)
+colors = PackedColorArray(1, 0.5019608, 0.5019608, 1, 1, 1, 0.5019608, 1, 1, 1, 1, 1, 0.5019608, 0.5019608, 1, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2yge"]
+
+[sub_resource type="FontFile" id="FontFile_7mycd"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/27/0/ascent = 0.0
+cache/0/27/0/descent = 0.0
+cache/0/27/0/underline_position = 0.0
+cache/0/27/0/underline_thickness = 0.0
+cache/0/27/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
+cache/0/29/0/ascent = 0.0
+cache/0/29/0/descent = 0.0
+cache/0/29/0/underline_position = 0.0
+cache/0/29/0/underline_thickness = 0.0
+cache/0/29/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_272bh"]
+font = SubResource("FontFile_7mycd")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+outline_size = 8
+stacked_outline_count = 1
+stacked_outline_0/size = 8
+stacked_outline_0/color = Color(0, 0, 1, 1)
+
+[node name="Main" type="Node2D" unique_id=1258844030]
+
+[node name="PlayScene" type="Node2D" parent="." unique_id=110842984]
+script = ExtResource("1_0xm2m")
+
+[node name="Stars" type="CPUParticles2D" parent="PlayScene" unique_id=839934944]
+position = Vector2(300, 0)
+amount = 25
+lifetime = 8.0
+preprocess = 8.1
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 125.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color_initial_ramp = SubResource("Gradient_ig7tw")
+
+[node name="Camera" type="Camera2D" parent="PlayScene" unique_id=1562944064]
+anchor_mode = 0
+
+[node name="EnemyDespawn" type="Area2D" parent="PlayScene" unique_id=1561916640]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_h2yge")
+
+[node name="Collision" type="CollisionShape2D" parent="PlayScene/EnemyDespawn" unique_id=145517525]
+position = Vector2(300, 1000)
+shape = SubResource("WorldBoundaryShape2D_0xm2m")
+debug_color = Color(1, 0.5019608, 0.5019608, 0.5019608)
+
+[node name="BulletDespawn" type="Area2D" parent="PlayScene" unique_id=1191794151]
+collision_layer = 0
+collision_mask = 10
+monitorable = false
+script = ExtResource("2_h2yge")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="PlayScene/BulletDespawn" unique_id=1788994171]
+position = Vector2(700, 400)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_h2yge")
+debug_color = Color(1, 1, 0.5019608, 0.5019608)
+
+[node name="CollisionUp" type="CollisionShape2D" parent="PlayScene/BulletDespawn" unique_id=1254704539]
+position = Vector2(300, -100)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_h2yge")
+debug_color = Color(1, 1, 0.5019608, 0.5019608)
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="PlayScene/BulletDespawn" unique_id=596792912]
+position = Vector2(-100, 400)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_h2yge")
+debug_color = Color(1, 1, 0.5019608, 0.5019608)
+
+[node name="CollisionDown" type="CollisionShape2D" parent="PlayScene/BulletDespawn" unique_id=839609547]
+position = Vector2(300, 900)
+shape = SubResource("WorldBoundaryShape2D_h2yge")
+debug_color = Color(1, 1, 0.5019608, 0.5019608)
+
+[node name="Particles" type="Node2D" parent="." unique_id=334237955]
+
+[node name="Enemies" type="Node2D" parent="." unique_id=124394659]
+
+[node name="AlienShipSmall1" parent="Enemies" unique_id=927606859 instance=ExtResource("5_lquwl")]
+position = Vector2(184, -32)
+
+[node name="AlienShipSmall2" parent="Enemies" unique_id=2110283987 instance=ExtResource("5_lquwl")]
+position = Vector2(344, -200)
+
+[node name="AlienShipSmall3" parent="Enemies" unique_id=780860087 instance=ExtResource("5_lquwl")]
+position = Vector2(512, -112)
+
+[node name="AlienShipSmall4" parent="Enemies" unique_id=1802309207 instance=ExtResource("5_lquwl")]
+position = Vector2(408, -32)
+
+[node name="EnemyAsteroidLarge" parent="Enemies" unique_id=1734626241 instance=ExtResource("4_7mycd")]
+position = Vector2(128, -168)
+
+[node name="EnemyAsteroidLarge2" parent="Enemies" unique_id=676546099 instance=ExtResource("4_7mycd")]
+position = Vector2(488, -248)
+
+[node name="EnemyAsteroidLargeOval" parent="Enemies" unique_id=1958747543 instance=ExtResource("5_272bh")]
+position = Vector2(200, -336)
+spin_speed = -0.69
+
+[node name="EnemyAsteroidLargeOval2" parent="Enemies" unique_id=1956066961 instance=ExtResource("5_272bh")]
+position = Vector2(392, -344)
+spin_speed = 0.41000000000000014
+
+[node name="EnemyAsteroidSmall" parent="Enemies" unique_id=1240263682 instance=ExtResource("6_kek77")]
+position = Vector2(456, -136)
+
+[node name="EnemyAsteroidSmall2" parent="Enemies" unique_id=1477988340 instance=ExtResource("6_kek77")]
+position = Vector2(408, -240)
+
+[node name="EnemyAsteroidSmall3" parent="Enemies" unique_id=477712399 instance=ExtResource("6_kek77")]
+position = Vector2(224, -144)
+
+[node name="EnemyAsteroidSmall4" parent="Enemies" unique_id=2124881052 instance=ExtResource("6_kek77")]
+position = Vector2(240, -224)
+
+[node name="EnemyAsteroidSmall5" parent="Enemies" unique_id=482465865 instance=ExtResource("6_kek77")]
+position = Vector2(328, -136)
+
+[node name="EnemyAsteroidMedium" parent="Enemies" unique_id=1955806978 instance=ExtResource("7_4c57u")]
+position = Vector2(552, -40)
+
+[node name="EnemyAsteroidMedium2" parent="Enemies" unique_id=800107173 instance=ExtResource("7_4c57u")]
+position = Vector2(272, -184)
+
+[node name="EnemyAsteroidMedium3" parent="Enemies" unique_id=1171252055 instance=ExtResource("7_4c57u")]
+position = Vector2(144, -248)
+
+[node name="EnemyAsteroidMedium4" parent="Enemies" unique_id=56255444 instance=ExtResource("7_4c57u")]
+position = Vector2(344, -48)
+
+[node name="EnemyAsteroidMedium5" parent="Enemies" unique_id=193002800 instance=ExtResource("7_4c57u")]
+position = Vector2(304, -272)
+
+[node name="PlayerBullets" type="Node2D" parent="." unique_id=1438793541]
+
+[node name="Player" parent="." unique_id=806132807 instance=ExtResource("1_ig7tw")]
+position = Vector2(300, 700)
+
+[node name="EnemyBullets" type="Node2D" parent="." unique_id=431426764]
+
+[node name="UserInterface" type="CanvasLayer" parent="." unique_id=1526208090]
+
+[node name="ScoreLabel" type="Label" parent="UserInterface" unique_id=1517843442]
+offset_left = 8.0
+offset_right = 197.0
+offset_bottom = 41.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_272bh")
+script = ExtResource("6_7mycd")

@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://dwq4oobiii8rb"]
+
+[ext_resource type="Texture2D" uid="uid://c3rfwebixgm4y" path="res://Entities/Player/player.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://bsu0lp2it5gnr" path="res://Entities/Player/player.gd" id="1_qjkh3"]
+[ext_resource type="PackedScene" uid="uid://c4t3tilgheow2" path="res://Components/PlayerInputComponent/player_input_component.tscn" id="2_yw30f"]
+[ext_resource type="PackedScene" uid="uid://d1ky23wokkh6s" path="res://Components/HealthComponent/health_component.tscn" id="3_qjkh3"]
+[ext_resource type="PackedScene" uid="uid://v2d2s04tlj1f" path="res://Components/PlayerMovementComponent/player_movement_component.tscn" id="4_yw30f"]
+[ext_resource type="PackedScene" uid="uid://by2yjyvh1mdg1" path="res://Components/HurtboxComponent/hurtbox_component.tscn" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://clj0ylid6uwsx" path="res://Components/PlayerShootingComponent/player_shooting_component.gd" id="7_boad6"]
+[ext_resource type="Script" uid="uid://d2uyqjeg8tmg4" path="res://Entities/Player/bullet_group.gd" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://4k3ym0uduftn" path="res://Entities/Player/bullet_spawn.gd" id="9_hg6s5"]
+[ext_resource type="PackedScene" uid="uid://dkyq0oef6dsd8" path="res://Entities/Player/Bullets/Machine Gun/player_bullet.tscn" id="10_8t03j"]
+[ext_resource type="PackedScene" uid="uid://bl3ucxwmsc4rt" path="res://Components/DamageStateComponent/damage_state_component.tscn" id="11_iplt1"]
+[ext_resource type="Shader" uid="uid://dctetrleifei1" path="res://Entities/flash_shader.gdshader" id="12_owvpp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iplt1"]
+resource_local_to_scene = true
+shader = ExtResource("12_owvpp")
+shader_parameter/low_health_amount = 0.0
+shader_parameter/low_health_color = Color(1, 1, 0, 1)
+shader_parameter/damage_amount = 0.0
+shader_parameter/damage_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6k8r"]
+size = Vector2(16, 15)
+
+[node name="Player" type="Node2D" unique_id=1132008781]
+script = ExtResource("1_qjkh3")
+
+[node name="HealthComponent" parent="." unique_id=334399115 instance=ExtResource("3_qjkh3")]
+
+[node name="PlayerInputComponent" parent="." unique_id=1488890938 instance=ExtResource("2_yw30f")]
+
+[node name="PlayerMovementComponent" parent="." unique_id=410174024 node_paths=PackedStringArray("player") instance=ExtResource("4_yw30f")]
+player = NodePath("..")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=369495579]
+texture = ExtResource("1_oul6g")
+
+[node name="PlayerShootingComponent" type="Node2D" parent="." unique_id=801489477 node_paths=PackedStringArray("selected_bullet_groups")]
+script = ExtResource("7_boad6")
+selected_bullet_groups = [NodePath("MachineGunBulletGroupLevel1")]
+
+[node name="MachineGunBulletGroupLevel1" type="Node2D" parent="PlayerShootingComponent" unique_id=1138930690 node_paths=PackedStringArray("bullet_spawns", "timer")]
+script = ExtResource("8_rgyib")
+bullet_spawns = [NodePath("BulletSpawn1"), NodePath("BulletSpawn2")]
+timer = NodePath("Timer")
+
+[node name="BulletSpawn1" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel1" unique_id=1604312041]
+position = Vector2(-8, -9)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 270.0
+
+[node name="BulletSpawn2" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel1" unique_id=1891714807]
+position = Vector2(8, -9)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 270.0
+
+[node name="Timer" type="Timer" parent="PlayerShootingComponent/MachineGunBulletGroupLevel1" unique_id=843150617]
+wait_time = 0.2
+
+[node name="MachineGunBulletGroupLevel2" type="Node2D" parent="PlayerShootingComponent" unique_id=479829496 node_paths=PackedStringArray("bullet_spawns", "timer")]
+script = ExtResource("8_rgyib")
+bullet_spawns = [NodePath("BulletSpawn1"), NodePath("BulletSpawn2"), NodePath("BulletSpawn3")]
+timer = NodePath("Timer")
+
+[node name="BulletSpawn1" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel2" unique_id=29828150]
+position = Vector2(-8, -9)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 268.75
+
+[node name="BulletSpawn2" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel2" unique_id=1178212427]
+position = Vector2(8, -9)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 271.25
+
+[node name="BulletSpawn3" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel2" unique_id=651021293]
+position = Vector2(0, -15)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 270.0
+
+[node name="Timer" type="Timer" parent="PlayerShootingComponent/MachineGunBulletGroupLevel2" unique_id=1172332005]
+wait_time = 0.2
+
+[node name="MachineGunBulletGroupLevel3" type="Node2D" parent="PlayerShootingComponent" unique_id=178059488 node_paths=PackedStringArray("bullet_spawns", "timer")]
+script = ExtResource("8_rgyib")
+bullet_spawns = [NodePath("BulletSpawn1"), NodePath("BulletSpawn2"), NodePath("BulletSpawn3"), NodePath("BulletSpawn4")]
+timer = NodePath("Timer")
+
+[node name="BulletSpawn1" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel3" unique_id=1808598493]
+position = Vector2(-8, -9)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 270.0
+
+[node name="BulletSpawn2" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel3" unique_id=1219293598]
+position = Vector2(8, -9)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 270.0
+
+[node name="BulletSpawn3" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel3" unique_id=1165777358]
+position = Vector2(-14, -2)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 268.75
+
+[node name="BulletSpawn4" type="Marker2D" parent="PlayerShootingComponent/MachineGunBulletGroupLevel3" unique_id=1526587898]
+position = Vector2(14, -2)
+script = ExtResource("9_hg6s5")
+bullet = ExtResource("10_8t03j")
+speed = 700.0
+direction_deg = 271.25
+
+[node name="Timer" type="Timer" parent="PlayerShootingComponent/MachineGunBulletGroupLevel3" unique_id=887855279]
+wait_time = 0.2
+
+[node name="DamageStateComponent" parent="." unique_id=1701987004 instance=ExtResource("11_iplt1")]
+flash_material = SubResource("ShaderMaterial_iplt1")
+
+[node name="HurtboxComponent" parent="." unique_id=1877888138 instance=ExtResource("6_g6k8r")]
+
+[node name="Collision" type="CollisionPolygon2D" parent="HurtboxComponent" unique_id=661732863]
+position = Vector2(0, 3)
+polygon = PackedVector2Array(-25, 17, 25, 17, 0, -31)
+
+[node name="HurtboxBulletComponent" parent="." unique_id=1526851005 instance=ExtResource("6_g6k8r")]
+collision_layer = 16
+
+[node name="Collision" type="CollisionShape2D" parent="HurtboxBulletComponent" unique_id=504149348]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_g6k8r")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[connection signal="timeout" from="PlayerShootingComponent/MachineGunBulletGroupLevel1/Timer" to="PlayerShootingComponent/MachineGunBulletGroupLevel1" method="_on_timer_timeout"]
+[connection signal="timeout" from="PlayerShootingComponent/MachineGunBulletGroupLevel2/Timer" to="PlayerShootingComponent/MachineGunBulletGroupLevel2" method="_on_timer_timeout"]
+[connection signal="timeout" from="PlayerShootingComponent/MachineGunBulletGroupLevel3/Timer" to="PlayerShootingComponent/MachineGunBulletGroupLevel3" method="_on_timer_timeout"]

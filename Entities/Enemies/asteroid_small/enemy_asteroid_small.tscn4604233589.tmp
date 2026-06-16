@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b1w23t42afpgv"]
+
+[ext_resource type="Script" uid="uid://dcbsr61t75mte" path="res://enemies/asteroid_small/enemy_asteroid_small.gd" id="1_54w7n"]
+[ext_resource type="Texture2D" uid="uid://c11ja1tadwa0w" path="res://enemies/asteroid_small/small_asteroid.png" id="1_u5xry"]
+[ext_resource type="Script" uid="uid://c7vuvwhp0mg2v" path="res://enemies/asteroid_small/sprite.gd" id="2_83yfd"]
+[ext_resource type="PackedScene" uid="uid://d1ky23wokkh6s" path="res://Components/HealthComponent/health_component.tscn" id="2_d18i8"]
+[ext_resource type="PackedScene" uid="uid://by2yjyvh1mdg1" path="res://Components/HurtboxComponent/hurtbox_component.tscn" id="5_d18i8"]
+[ext_resource type="Script" uid="uid://2p7xodtqiupm" path="res://enemies/asteroid_small/hitbox.gd" id="6_1wwtn"]
+[ext_resource type="Script" uid="uid://bg062ybs6vkpf" path="res://enemies/asteroid_small/screen_visible.gd" id="7_u35tk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d18i8"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wwtn"]
+size = Vector2(14, 14)
+
+[node name="EnemyAsteroidSmall" type="Node2D" unique_id=1240263682]
+script = ExtResource("1_54w7n")
+
+[node name="HealthComponent" parent="." unique_id=1276068065 instance=ExtResource("2_d18i8")]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1261895405]
+texture = ExtResource("1_u5xry")
+script = ExtResource("2_83yfd")
+
+[node name="HurtboxComponent" parent="." unique_id=1877888138 node_paths=PackedStringArray("health_component") instance=ExtResource("5_d18i8")]
+collision_layer = 4
+collision_mask = 2
+health_component = NodePath("../HealthComponent")
+
+[node name="Collision" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1771862494]
+shape = SubResource("RectangleShape2D_d18i8")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=536855568]
+collision_layer = 4
+script = ExtResource("6_1wwtn")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1078967041]
+shape = SubResource("RectangleShape2D_1wwtn")
+
+[node name="ScreenVisible" type="VisibleOnScreenNotifier2D" parent="." unique_id=1352822884]
+script = ExtResource("7_u35tk")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b3or2byn1bxvy"]
+
+[ext_resource type="Script" uid="uid://niydvc6j38ve" path="res://Entities/Enemies/Bullets/enemy_bullet_weak/enemy_bullet_weak.gd" id="1_2wy6f"]
+[ext_resource type="Texture2D" uid="uid://ciou7fd8w0p14" path="res://Entities/Enemies/Bullets/enemy_bullet_weak/enemy_bullet_weak.png" id="2_2wy6f"]
+[ext_resource type="PackedScene" uid="uid://d1ky23wokkh6s" path="res://Components/HealthComponent/health_component.tscn" id="2_gqwfd"]
+[ext_resource type="Script" uid="uid://dv8kedh612us5" path="res://Entities/Enemies/Bullets/enemy_bullet_weak/sprite_enemy_bullet_weak.gd" id="3_4wv1t"]
+[ext_resource type="Script" uid="uid://dlsn4bcptqu7b" path="res://Entities/Player/Bullets/Machine Gun/hitbox.gd" id="3_rvnno"]
+[ext_resource type="PackedScene" uid="uid://by2yjyvh1mdg1" path="res://Components/HurtboxComponent/hurtbox_component.tscn" id="6_kmnd2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu4hq"]
+size = Vector2(8, 8)
+
+[node name="EnemyBulletWeak" type="Node2D" unique_id=659019908]
+script = ExtResource("1_2wy6f")
+damage = 10.0
+
+[node name="HealthComponent" parent="." unique_id=1276068065 instance=ExtResource("2_gqwfd")]
+max_health = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=941396360]
+texture = ExtResource("2_2wy6f")
+script = ExtResource("3_4wv1t")
+
+[node name="HurtboxComponent" parent="." unique_id=1877888138 instance=ExtResource("6_kmnd2")]
+collision_layer = 32
+
+[node name="Collision" type="CollisionShape2D" parent="HurtboxComponent" unique_id=528468946]
+shape = SubResource("RectangleShape2D_yu4hq")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=809691284]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("3_rvnno")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=2133647320]
+shape = SubResource("RectangleShape2D_yu4hq")

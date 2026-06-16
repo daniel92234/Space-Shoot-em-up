@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b4cev4osq4mcr"]
+
+[ext_resource type="Script" uid="uid://cwh64v3sbit7m" path="res://Explosions/explosion.gd" id="1_127ap"]
+[ext_resource type="Texture2D" uid="uid://d2c2krj7ykon7" path="res://Explosions/Sprites/asteroid_dust.png" id="2_0hpi5"]
+[ext_resource type="Texture2D" uid="uid://dtkppy2emleiy" path="res://Explosions/Sprites/fire.png" id="3_oxl4h"]
+[ext_resource type="Texture2D" uid="uid://cq7rrd8kfjo4a" path="res://Explosions/Sprites/part_asteroid.png" id="4_vtgbi"]
+
+[sub_resource type="Curve" id="Curve_7thu8"]
+_data = [Vector2(0, 0), 0.0, 18.135546, 0, 0, Vector2(0.1, 0.8), 0.55314416, 0.55314416, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_wpqtj"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="Curve" id="Curve_hkn6t"]
+_data = [Vector2(0, 1), inf, -1.0, 1, 1, Vector2(1, 0), -1.0, inf, 1, 1]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_m13yu"]
+colors = PackedColorArray(1, 0.8627451, 0, 1, 1, 0, 0, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[sub_resource type="Gradient" id="Gradient_m5331"]
+offsets = PackedFloat32Array(0.8333333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 6
+
+[node name="ExplosionMediumAsteroid" type="Node2D" unique_id=1961755894]
+script = ExtResource("1_127ap")
+metadata/_custom_type_script = "uid://cwh64v3sbit7m"
+
+[node name="AsteroidDust" type="CPUParticles2D" parent="." unique_id=1081912885]
+emitting = false
+texture = ExtResource("2_0hpi5")
+lifetime = 1.4
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 22.0
+angular_velocity_min = -125.0
+angular_velocity_max = 125.0
+scale_amount_min = 1.2
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_7thu8")
+color = Color(0.63, 0.37421998, 0.2646, 1)
+color_ramp = SubResource("Gradient_wpqtj")
+
+[node name="Fire" type="CPUParticles2D" parent="." unique_id=1055386999]
+emitting = false
+amount = 12
+texture = ExtResource("3_oxl4h")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 150.0
+scale_amount_min = 0.9
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_hkn6t")
+color = Color(1, 0.78431374, 0, 1)
+color_ramp = SubResource("Gradient_m13yu")
+
+[node name="AsteroidPieces" type="CPUParticles2D" parent="." unique_id=869414701]
+emitting = false
+texture = ExtResource("4_vtgbi")
+lifetime = 1.25
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 110.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+angle_max = 360.0
+scale_amount_min = 1.4
+scale_amount_max = 1.85
+color = Color(0.627451, 0.29411766, 0.14901961, 1)
+color_ramp = SubResource("Gradient_m5331")

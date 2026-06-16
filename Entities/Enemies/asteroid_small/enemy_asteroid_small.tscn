@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://b1w23t42afpgv"]
+
+[ext_resource type="Script" uid="uid://dcbsr61t75mte" path="res://Entities/Enemies/asteroid_small/enemy_asteroid_small.gd" id="1_54w7n"]
+[ext_resource type="Texture2D" uid="uid://c11ja1tadwa0w" path="res://Entities/Enemies/asteroid_small/small_asteroid.png" id="1_u5xry"]
+[ext_resource type="Script" uid="uid://c7vuvwhp0mg2v" path="res://Entities/Enemies/asteroid_small/sprite_small_asteroid.gd" id="2_83yfd"]
+[ext_resource type="PackedScene" uid="uid://batatvx7jyexy" path="res://Explosions/explosion_small_asteroid.tscn" id="2_bokw0"]
+[ext_resource type="PackedScene" uid="uid://d1ky23wokkh6s" path="res://Components/HealthComponent/health_component.tscn" id="2_d18i8"]
+[ext_resource type="PackedScene" uid="uid://by2yjyvh1mdg1" path="res://Components/HurtboxComponent/hurtbox_component.tscn" id="5_d18i8"]
+[ext_resource type="PackedScene" uid="uid://jsuuv8pphi5h" path="res://Components/ScoringComponent/scoring_component.tscn" id="6_u7ypm"]
+[ext_resource type="PackedScene" uid="uid://dk2f1avbsugqs" path="res://Components/ScreenVisibleComponent/screen_visible_component.tscn" id="6_u35tk"]
+[ext_resource type="PackedScene" uid="uid://b2xqw2krlwp88" path="res://Components/HitboxPlayerCollisionComponent/hitbox_player_collision_component.tscn" id="7_o8ght"]
+[ext_resource type="PackedScene" uid="uid://bl3ucxwmsc4rt" path="res://Components/DamageStateComponent/damage_state_component.tscn" id="8_rjt6l"]
+[ext_resource type="Shader" uid="uid://dctetrleifei1" path="res://Entities/flash_shader.gdshader" id="9_l0q7i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7ypm"]
+resource_local_to_scene = true
+shader = ExtResource("9_l0q7i")
+shader_parameter/low_health_amount = 0.0
+shader_parameter/low_health_color = Color(1, 1, 0, 1)
+shader_parameter/damage_amount = 0.0
+shader_parameter/damage_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d18i8"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wwtn"]
+size = Vector2(14, 14)
+
+[node name="EnemyAsteroidSmall" type="Node2D" unique_id=1240263682]
+script = ExtResource("1_54w7n")
+direction_deg = 0.0
+explosion = ExtResource("2_bokw0")
+
+[node name="HealthComponent" parent="." unique_id=1276068065 instance=ExtResource("2_d18i8")]
+max_health = 15.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1261895405]
+texture = ExtResource("1_u5xry")
+script = ExtResource("2_83yfd")
+
+[node name="ScoringComponent" parent="." unique_id=1756305653 instance=ExtResource("6_u7ypm")]
+score = 50
+
+[node name="DamageStateComponent" parent="." unique_id=1701987004 instance=ExtResource("8_rjt6l")]
+flash_material = SubResource("ShaderMaterial_u7ypm")
+
+[node name="ScreenVisibleComponent" parent="." unique_id=652182839 instance=ExtResource("6_u35tk")]
+rect = Rect2(-9, -9, 18, 18)
+
+[node name="HurtboxComponent" parent="." unique_id=1877888138 instance=ExtResource("5_d18i8")]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1771862494]
+shape = SubResource("RectangleShape2D_d18i8")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="HitboxPlayerCollisionComponent" parent="." unique_id=1321445557 instance=ExtResource("7_o8ght")]
+damage = 30.0
+damage_received = 0.0
+
+[node name="Collision" type="CollisionShape2D" parent="HitboxPlayerCollisionComponent" unique_id=1078967041]
+shape = SubResource("RectangleShape2D_1wwtn")

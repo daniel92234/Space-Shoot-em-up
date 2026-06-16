@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bl3ucxwmsc4rt"]
+
+[ext_resource type="Script" uid="uid://bkwka746dcs5m" path="res://Components/DamageStateComponent/damage_state_component.gd" id="1_gy8qk"]
+[ext_resource type="Shader" uid="uid://dctetrleifei1" path="res://Entities/flash_shader.gdshader" id="2_2awyp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjt6l"]
+resource_local_to_scene = true
+shader = ExtResource("2_2awyp")
+shader_parameter/low_health_amount = 0.0
+shader_parameter/low_health_color = Color(1, 1, 0, 1)
+shader_parameter/damage_amount = 0.0
+shader_parameter/damage_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_u7ypm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_material:shader_parameter/low_health_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jnofr"]
+resource_name = "low_health_flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_material:shader_parameter/low_health_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.400000019, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdcwd"]
+_data = {
+&"RESET": SubResource("Animation_u7ypm"),
+&"low_health_flash": SubResource("Animation_jnofr")
+}
+
+[sub_resource type="Animation" id="Animation_bokw0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_material:shader_parameter/damage_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rjt6l"]
+resource_name = "damage_flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_material:shader_parameter/damage_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.50000002375, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bokw0"]
+_data = {
+&"RESET": SubResource("Animation_bokw0"),
+&"damage_flash": SubResource("Animation_rjt6l")
+}
+
+[node name="DamageStateComponent" type="Node" unique_id=1701987004]
+script = ExtResource("1_gy8qk")
+flash_material = SubResource("ShaderMaterial_rjt6l")
+
+[node name="LowHealthFlash" type="AnimationPlayer" parent="." unique_id=1627651437]
+libraries/ = SubResource("AnimationLibrary_qdcwd")
+
+[node name="DamageFlash" type="AnimationPlayer" parent="." unique_id=48730184]
+libraries/ = SubResource("AnimationLibrary_bokw0")
+
+[node name="LowHealthDowntimeTimer" type="Timer" parent="." unique_id=533451291]
+one_shot = true

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cyksxc7etndaa"]
+
+[ext_resource type="Script" uid="uid://7ldubyehyexf" path="res://Entities/Enemies/alien_ship_small_1/alien_ship_small_1.gd" id="1_3mffj"]
+[ext_resource type="PackedScene" uid="uid://bl3ucxwmsc4rt" path="res://Components/DamageStateComponent/damage_state_component.tscn" id="2_bmjnx"]
+[ext_resource type="PackedScene" uid="uid://sphf81vrox5y" path="res://Explosions/explosion_alien_ship_small.tscn" id="2_wu8yw"]
+[ext_resource type="Shader" uid="uid://dctetrleifei1" path="res://Entities/flash_shader.gdshader" id="3_b3fgl"]
+[ext_resource type="Texture2D" uid="uid://cemn01uthw8b4" path="res://Entities/Enemies/alien_ship_small_1/alien_ship_small_1.png" id="4_pb7s0"]
+[ext_resource type="PackedScene" uid="uid://d1ky23wokkh6s" path="res://Components/HealthComponent/health_component.tscn" id="4_v0mqj"]
+[ext_resource type="PackedScene" uid="uid://jsuuv8pphi5h" path="res://Components/ScoringComponent/scoring_component.tscn" id="5_k2324"]
+[ext_resource type="PackedScene" uid="uid://dk2f1avbsugqs" path="res://Components/ScreenVisibleComponent/screen_visible_component.tscn" id="8_yujfg"]
+[ext_resource type="PackedScene" uid="uid://by2yjyvh1mdg1" path="res://Components/HurtboxComponent/hurtbox_component.tscn" id="9_pb7s0"]
+[ext_resource type="PackedScene" uid="uid://b2xqw2krlwp88" path="res://Components/HitboxPlayerCollisionComponent/hitbox_player_collision_component.tscn" id="10_k2324"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2324"]
+resource_local_to_scene = true
+shader = ExtResource("3_b3fgl")
+shader_parameter/low_health_amount = 0.0
+shader_parameter/low_health_color = Color(1, 1, 0, 1)
+shader_parameter/damage_amount = 0.0
+shader_parameter/damage_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2324"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yujfg"]
+size = Vector2(24, 24)
+
+[node name="AlienShipSmall1" type="Node2D" unique_id=927606859]
+script = ExtResource("1_3mffj")
+speed = 15.0
+explosion = ExtResource("2_wu8yw")
+
+[node name="HealthComponent" parent="." unique_id=1276068065 instance=ExtResource("4_v0mqj")]
+max_health = 10.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=538239550]
+rotation = 1.5707964
+texture = ExtResource("4_pb7s0")
+
+[node name="ScoringComponent" parent="." unique_id=1756305653 instance=ExtResource("5_k2324")]
+score = 30
+
+[node name="DamageStateComponent" parent="." unique_id=1701987004 instance=ExtResource("2_bmjnx")]
+flash_material = SubResource("ShaderMaterial_k2324")
+
+[node name="ScreenVisibleComponent" parent="." unique_id=652182839 instance=ExtResource("8_yujfg")]
+rect = Rect2(-16, -16, 32, 32)
+
+[node name="HurtboxComponent" parent="." unique_id=1877888138 instance=ExtResource("9_pb7s0")]
+light_mask = 4
+visibility_layer = 2
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1559807037]
+shape = SubResource("RectangleShape2D_k2324")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="HitboxPlayerCollisionComponent" parent="." unique_id=1321445557 instance=ExtResource("10_k2324")]
+damage = 20.0
+damage_received = 0.0
+
+[node name="Collision" type="CollisionShape2D" parent="HitboxPlayerCollisionComponent" unique_id=323961523]
+shape = SubResource("RectangleShape2D_yujfg")

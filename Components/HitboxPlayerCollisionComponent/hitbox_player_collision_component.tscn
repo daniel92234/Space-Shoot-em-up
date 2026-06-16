@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b2xqw2krlwp88"]
+
+[ext_resource type="Script" uid="uid://2p7xodtqiupm" path="res://Components/HitboxPlayerCollisionComponent/hitbox_player_collision_component.gd" id="1_s1jmu"]
+
+[node name="HitboxPlayerCollisionComponent" type="Area2D" unique_id=1321445557]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_s1jmu")

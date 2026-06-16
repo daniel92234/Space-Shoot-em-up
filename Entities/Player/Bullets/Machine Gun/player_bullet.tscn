@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dkyq0oef6dsd8"]
+
+[ext_resource type="Texture2D" uid="uid://b0jpxtqqxgvhg" path="res://Entities/Player/Bullets/Machine Gun/player_bullet.png" id="1_jg4fg"]
+[ext_resource type="Script" uid="uid://dyf4etyu8vhog" path="res://Entities/Player/Bullets/Machine Gun/player_bullet.gd" id="1_nefnj"]
+[ext_resource type="Script" uid="uid://dlsn4bcptqu7b" path="res://Entities/Player/Bullets/Machine Gun/hitbox.gd" id="3_nefnj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd6ws"]
+size = Vector2(16, 8)
+
+[node name="PlayerBullet" type="Node2D" unique_id=1216799070]
+script = ExtResource("1_nefnj")
+damage = 10.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=89438525]
+texture = ExtResource("1_jg4fg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1442189103]
+collision_layer = 0
+collision_mask = 36
+monitorable = false
+script = ExtResource("3_nefnj")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=369695490]
+shape = SubResource("RectangleShape2D_dd6ws")

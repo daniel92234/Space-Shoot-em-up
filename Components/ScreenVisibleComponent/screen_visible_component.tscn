@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dk2f1avbsugqs"]
+
+[ext_resource type="Script" uid="uid://bg062ybs6vkpf" path="res://Components/ScreenVisibleComponent/screen_visible_component.gd" id="1_lt24y"]
+
+[node name="ScreenVisibleComponent" type="VisibleOnScreenNotifier2D" unique_id=652182839]
+script = ExtResource("1_lt24y")

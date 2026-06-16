@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ojq225otbysw"]
+
+[ext_resource type="Script" uid="uid://clj0ylid6uwsx" path="res://Components/PlayerShootingComponent/player_shooting_component.gd" id="1_lkc32"]
+
+[node name="PlayerShootingComponent" type="Node2D" unique_id=1115783692 node_paths=PackedStringArray("selected_bullet_group")]
+script = ExtResource("1_lkc32")
+selected_bullet_group = NodePath("")

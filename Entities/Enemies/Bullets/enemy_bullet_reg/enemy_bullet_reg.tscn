@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://53b5mprumv03"]
+
+[ext_resource type="Script" uid="uid://bjv0dulhecv5g" path="res://Entities/Enemies/Bullets/enemy_bullet_reg/enemy_bullet_reg.gd" id="1_eq2kp"]
+[ext_resource type="Texture2D" uid="uid://cjfkpjojpjeku" path="res://Entities/Enemies/Bullets/enemy_bullet_reg/enemy_bullet_reg.png" id="2_d8l0j"]
+[ext_resource type="Script" uid="uid://dlsn4bcptqu7b" path="res://Entities/Player/Bullets/Machine Gun/hitbox.gd" id="3_eui0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu4hq"]
+size = Vector2(8, 8)
+
+[node name="EnemyBulletReg" type="Node2D" unique_id=659019908]
+script = ExtResource("1_eq2kp")
+damage = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=941396360]
+texture = ExtResource("2_d8l0j")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=809691284]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("3_eui0w")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=2133647320]
+shape = SubResource("RectangleShape2D_yu4hq")
